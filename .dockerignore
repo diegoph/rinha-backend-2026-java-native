@@ -1,8 +1,5 @@
 out
 app.jar
 sources.txt
-k6-results
 *.zip
-resources/references.json.gz
-resources/split-sweep
 .git
