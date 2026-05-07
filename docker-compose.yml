@@ -1,0 +1,76 @@
+services:
+  lb:
+    image: haproxy:2.9-alpine
+    container_name: rinha-java-lb
+    command: ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]
+    ports:
+      - "9999:9999"
+    volumes:
+      - sockets:/sockets
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - api1
+      - api2
+    logging:
+      driver: "none"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "20MB"
+
+  api1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rinha-java-final-api
+    container_name: rinha-java-api1
+    command:
+      - "-Divf.nprobe=1"
+      - "-Dknn.slots=1"
+      - "-Dserver.backlog=8192"
+      - "-Dserver.inbuf=768"
+      - "-Dserver.outbuf=512"
+      - "-Dserver.header.max=2048"
+      - "-Dserver.body.max=8192"
+      - "-Dstartup.warmup.searches=0"
+    environment:
+      SOCKET_PATH: /sockets/api1.sock
+    volumes:
+      - sockets:/sockets
+    logging:
+      driver: "none"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "165MB"
+
+  api2:
+    image: rinha-java-final-api
+    container_name: rinha-java-api2
+    depends_on:
+      - api1
+    command:
+      - "-Divf.nprobe=1"
+      - "-Dknn.slots=1"
+      - "-Dserver.backlog=8192"
+      - "-Dserver.inbuf=768"
+      - "-Dserver.outbuf=512"
+      - "-Dserver.header.max=2048"
+      - "-Dserver.body.max=8192"
+      - "-Dstartup.warmup.searches=0"
+    environment:
+      SOCKET_PATH: /sockets/api2.sock
+    volumes:
+      - sockets:/sockets
+    logging:
+      driver: "none"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "165MB"
+
+volumes:
+  sockets:
