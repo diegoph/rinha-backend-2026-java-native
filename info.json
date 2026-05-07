@@ -1,0 +1,7 @@
+{
+  "participants": ["Diego Schmidt"],
+  "social": ["https://github.com/diegoph", "https://www.linkedin.com/in/diego-schmidt-9a956a125/"],
+  "source-code-repo": "https://github.com/diegoph/rinha-backend-2026-java-native",
+  "stack": ["java", "graalvm", "haproxy"],
+  "open_to_work": false
+}
