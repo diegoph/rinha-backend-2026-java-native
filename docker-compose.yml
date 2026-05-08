@@ -30,7 +30,7 @@ services:
       - "-Dserver.outbuf=512"
       - "-Dserver.header.max=2048"
       - "-Dserver.body.max=8192"
-      - "-Dstartup.warmup.searches=10000"
+      - "-Dstartup.warmup.searches=20000"
     environment:
       SOCKET_PATH: /sockets/api1.sock
     volumes:
@@ -56,7 +56,7 @@ services:
       - "-Dserver.outbuf=512"
       - "-Dserver.header.max=2048"
       - "-Dserver.body.max=8192"
-      - "-Dstartup.warmup.searches=10000"
+      - "-Dstartup.warmup.searches=20000"
     environment:
       SOCKET_PATH: /sockets/api2.sock
     volumes:
