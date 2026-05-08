@@ -20,7 +20,7 @@ services:
           memory: "20MB"
 
   api1:
-    image: dgoschmidtt/rinha-backend-2026-java-native:latest
+    image: dgoschmidtt/rinha-backend-2026-java-native:1.0
     container_name: rinha-java-api1
     command:
       - "-Divf.nprobe=1"
@@ -44,7 +44,7 @@ services:
           memory: "165MB"
 
   api2:
-    image: dgoschmidtt/rinha-backend-2026-java-native:latest
+    image: dgoschmidtt/rinha-backend-2026-java-native:1.0
     container_name: rinha-java-api2
     depends_on:
       - api1
