@@ -16,8 +16,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.26"
-          memory: "30MB"
+          cpus: "0.20"
+          memory: "25MB"
 
   api1:
     image: dgoschmidtt/rinha-backend-2026-java-native:1.1
@@ -40,8 +40,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.37"
-          memory: "160MB"
+          cpus: "0.40"
+          memory: "162MB"
 
   api2:
     image: dgoschmidtt/rinha-backend-2026-java-native:1.1
@@ -66,8 +66,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.37"
-          memory: "160MB"
+          cpus: "0.40"
+          memory: "162MB"
 
 volumes:
   sockets:
