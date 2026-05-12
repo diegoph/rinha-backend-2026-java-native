@@ -1,18 +1,14 @@
 services:
   lb:
-    image: haproxy:2.9-alpine
-    container_name: rinha-java-lb
-    command: ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]
+    image: nginx:1.27-alpine
     ports:
       - "9999:9999"
     volumes:
       - sockets:/sockets
-      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - api1
       - api2
-    logging:
-      driver: "none"
     deploy:
       resources:
         limits:
