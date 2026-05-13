@@ -9,6 +9,10 @@ services:
     depends_on:
       - api1
       - api2
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
     deploy:
       resources:
         limits:
